@@ -26,8 +26,8 @@ interface Todo {
 }
 
 export default function TaskPage() {
-  const {todo} = useSelector((state: any) => state?.todos);
-  const [todos, setTodos] = useState<Todo[]>(todo)
+  const {todos} = useSelector((state: any) => state?.todos);
+  const [todoss, setTodos] = useState<Todo[]>(todos)
   const dispatch: ThunkDispatch<any, unknown, AnyAction> = useDispatch();
   // console.log(todo)
   // Sort by start and end date (ascending or descending)
@@ -92,7 +92,7 @@ const filterByStatus = (todos: [], status: 'pending' | 'completed' | 'All') => {
 
         <div className="flex flex-wrap items-center gap-3">
           {/* Sort Select */}
-          <Select onValueChange={(e) => sortByDate(todo, e.split(" ")[0], e.split(" ")[1])}>
+          <Select onValueChange={(e) => sortByDate(todos, e.split(" ")[0], e.split(" ")[1])}>
             <SelectTrigger className="gap-5 border-gray-300 w-48">
               <SelectValue placeholder="Sort" />
             </SelectTrigger>
@@ -106,7 +106,7 @@ const filterByStatus = (todos: [], status: 'pending' | 'completed' | 'All') => {
           </Select>
 
           {/* Priority Select */}
-          <Select onValueChange={(e) => sortByPriority(todo, e)}>
+          <Select onValueChange={(e) => sortByPriority(todos, e)}>
             <SelectTrigger className="gap-5 border-gray-300 w-48">
               <SelectValue placeholder="Priority" />
             </SelectTrigger>
@@ -122,7 +122,7 @@ const filterByStatus = (todos: [], status: 'pending' | 'completed' | 'All') => {
 
           {/* Status Select */}
           <Select onValueChange={(e) => {
-            filterByStatus(todo, e)
+            filterByStatus(todos, e)
           }}>
             <SelectTrigger className="gap-5 border-gray-300 w-48">
               <SelectValue placeholder="Status" />
@@ -136,7 +136,7 @@ const filterByStatus = (todos: [], status: 'pending' | 'completed' | 'All') => {
         </div>
       </div>      
 
-      {todos?.map((task, index) => <TaskCard key={index} task={task}/>)}
+      {todoss?.map((task, index) => <TaskCard key={index} task={task}/>)}
     </>
   );
 }

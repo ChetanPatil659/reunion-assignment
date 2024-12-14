@@ -33,7 +33,7 @@ export default function DashboardPage() {
             Average Time to Complete
           </h2>
           <p className="text-2xl font-bold text-gray-800">
-            {user?.averageTimeToComplete.toFixed(0)} hrs
+            {user?.averageTimeToComplete?.toFixed(0)} hrs
           </p>
         </div>
       </div>
@@ -56,13 +56,13 @@ export default function DashboardPage() {
               <tr key={task.id}>
                 <td className="py-2 border-b border-gray-200">{task.title}</td>
                 <td className="py-2 border-b border-gray-200">
-                  {task.elapsedTime.toFixed(0)} hrs
+                  {task.elapsedTime?.toFixed(0)} hrs
                 </td>
                 <td className="py-2 border-b border-gray-200">
-                  {task.timeLeft.toFixed(0)} hrs
+                  {task.timeLeft?.toFixed(0)} hrs
                 </td>
                 <td className="py-2 border-b border-gray-200">
-                  {task.totalTime.toFixed(0)} hrs
+                  {task.totalTime?.toFixed(0)} hrs
                 </td>
               </tr>
             )})}
