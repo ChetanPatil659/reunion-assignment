@@ -5,10 +5,12 @@ import { TbLogout } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "@/store/userSlice";
 import { removeTodo } from "@/store/todoSlice";
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch<any, unknown, AnyAction> = useDispatch();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

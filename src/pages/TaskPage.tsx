@@ -1,6 +1,5 @@
 import Navbar from "../components/Navbar.tsx";
 import TaskCard from "@/components/TaskCard.tsx";
-import { Button } from "@/components/ui/button.tsx";
 import {
   Select,
   SelectContent,
@@ -13,6 +12,7 @@ import DeleteButtonWithDialog from "@/components/DeleteButtonWithDialog.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createTodo, getTodo } from "@/store/todoSlice.ts";
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 
 interface Todo {
   _id: string;
@@ -26,9 +26,9 @@ interface Todo {
 }
 
 export default function TaskPage() {
-  const {todo} = useSelector(state => state?.todos);
+  const {todo} = useSelector((state: any) => state?.todos);
   const [todos, setTodos] = useState<Todo[]>(todo)
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch<any, unknown, AnyAction> = useDispatch();
   // console.log(todo)
   // Sort by start and end date (ascending or descending)
 const sortByDate = (todos: [], field: 'startDate' | 'endDate' | 'All', order = "asc") => {
@@ -55,7 +55,7 @@ const sortByPriority = (todos: [], priority: string) => {
   if(priority === 'All'){
     return todos
   }
-  return setTodos(pre => {
+  return setTodos(() => {
     let temp = [...todos].filter((a) => a.priority == priority);
     return [...temp];
   });
@@ -66,8 +66,8 @@ const filterByStatus = (todos: [], status: 'pending' | 'completed' | 'All') => {
   if(status === 'All'){
     return todos
   }
-  return setTodos(pre =>{
-    let temp = todos.filter((todo) => todo?.status === status);
+  return setTodos(() =>{
+    let temp = todos.filter((todo: Todo) => todo?.status === status);
     return [...temp];
   })
 };

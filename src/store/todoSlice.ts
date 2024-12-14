@@ -27,6 +27,7 @@ export const createTodo = createAsyncThunk("todo/create", async (data) => {
 export const updateTodo = createAsyncThunk("todo/update", async (data) => {
   console.log(data)
   try {
+    
     const response = await axios(
       `http://localhost:8000/todo/update/${data._id}`,
       {
@@ -79,7 +80,7 @@ export const todoReducer = createSlice({
   extraReducers: (builder) => {
     builder.addCase(createTodo.fulfilled, (state, action) => {
       state.loading = false;
-      state.todo = [...state.todo, action.payload.todo];
+      state.todos = [...state?.todos, action.payload.todo];
     })
     builder.addCase(createTodo.pending, (state) => {
       state.loading = true;
@@ -91,7 +92,7 @@ export const todoReducer = createSlice({
 
     builder.addCase(updateTodo.fulfilled, (state, action) => {
         state.loading = false;
-        state.todo = [...state.todo, action.payload.todo];
+        state.todos = [...state.todos, action.payload.todo];
       })
       builder.addCase(updateTodo.pending, (state) => {
         state.loading = true;
@@ -103,7 +104,7 @@ export const todoReducer = createSlice({
 
       builder.addCase(getTodo.fulfilled, (state, action) => {
         state.loading = false;
-        state.todo = [...action.payload.todos];
+        state.todos = [...action.payload.todos];
       })
       builder.addCase(getTodo.pending, (state) => {
         state.loading = true;
@@ -113,9 +114,9 @@ export const todoReducer = createSlice({
         state.error = action.error.message || "Something went wrong";
       })
 
-      builder.addCase(removeTodo.fulfilled, (state, action) => {
+      builder.addCase(removeTodo.fulfilled, (state) => {
         state.loading = false;
-        state.todo = [];
+        state.todos = [];
       })
       builder.addCase(removeTodo.pending, (state) => {
         state.loading = true;

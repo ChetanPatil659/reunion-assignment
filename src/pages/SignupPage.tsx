@@ -6,6 +6,7 @@ import { Link } from "react-router"
 import { useDispatch } from "react-redux"
 import { registerUser } from "@/store/userSlice"
 import { getTodo } from "@/store/todoSlice"
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit"
  
 const formSchema = z.object({
   userName: z.string().min(2).max(50),
@@ -15,7 +16,7 @@ const formSchema = z.object({
 
 export default function SignupPage() {
 
-    const dispatch = useDispatch();
+  const dispatch: ThunkDispatch<any, unknown, AnyAction> = useDispatch();
     const form = useForm<z.infer<typeof formSchema>>({  
         resolver: zodResolver(formSchema),
         defaultValues: {

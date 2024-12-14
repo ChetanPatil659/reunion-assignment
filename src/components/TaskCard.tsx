@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import TaskModal from "./TaskModal";
 import { Checkbox } from "./ui/checkbox";
 import { getTodo, updateTodo } from "@/store/todoSlice";
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 
 type TaskType = {
   _id: string;
@@ -15,9 +16,8 @@ type TaskType = {
 };
 
 const TaskCard = ({ task }: { task: TaskType }) => {
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch<any, unknown, AnyAction> = useDispatch();
   const {
-    _id,
     title = "Task Name",
     priority = 3,
     status = "In Progress",
@@ -167,7 +167,7 @@ const TaskCard = ({ task }: { task: TaskType }) => {
                 _id: task._id,
                 title: task.title,
                 priority: task.priority,
-                status: task.status,
+                status: task.status as "pending" | "completed",
                 startDate: task.startDate,
                 endDate: task.endDate,
               }}

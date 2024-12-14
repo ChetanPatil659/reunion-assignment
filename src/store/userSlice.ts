@@ -116,7 +116,7 @@ export const userReducer = createSlice({
         state.error = action.error.message || "Something went wrong";
       });
 
-      builder.addCase(logoutUser.fulfilled, (state, action) => {
+      builder.addCase(logoutUser.fulfilled, (state) => {
         state.loading = false;
         state.user = {};
         state.token = '';

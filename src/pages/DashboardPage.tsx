@@ -1,97 +1,8 @@
 import Navbar from '@/components/Navbar'
-import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-const tasks = [
-  {
-    id: 1,
-    name: "Design Landing Page",
-    priority: 4,
-    status: "In Progress",
-    startDate: "2024-12-10",
-    endDate: "2024-12-15",
-    totalTime: 5, // in days
-  },
-  {
-    id: 2,
-    name: "Fix Backend API Issue",
-    priority: 3,
-    status: "Completed",
-    startDate: "2024-12-08",
-    endDate: "2024-12-09",
-    totalTime: 1, // in days
-  },
-  {
-    id: 3,
-    name: "Prepare Sprint Planning",
-    priority: 5,
-    status: "Pending",
-    startDate: "2024-12-13",
-    endDate: "2024-12-16",
-    totalTime: 3, // in days
-  },
-];
-
 export default function DashboardPage() {
-  const {user} = useSelector(state => state.user);
-  const dashboardSummary = useMemo(() => {
-    const totalTasks = tasks.length;
-    const completedTasks = tasks.filter((task) => task.status === "Completed")
-      .length;
-    const pendingTasks = tasks.filter((task) => task.status === "Pending")
-      .length;
-    const inProgressTasks = tasks.filter(
-      (task) => task.status === "In Progress"
-    ).length;
-
-    const totalTimeCompleted = tasks
-      .filter((task) => task.status === "Completed")
-      .reduce((sum, task) => sum + task.totalTime, 0);
-
-    const averageTimeToComplete =
-      completedTasks > 0 ? totalTimeCompleted / completedTasks : 0;
-
-    const pendingSummary = tasks
-      .filter((task) => task.status === "Pending")
-      .map((task) => {
-        const now = new Date();
-        const endTime = new Date(task.endDate);
-        const timeLapsed = Math.max(
-          0,
-          Math.ceil((now - new Date(task.startDate)) / (1000 * 60 * 60 * 24))
-        );
-        const timeLeft = Math.max(
-          0,
-          Math.ceil((endTime - now) / (1000 * 60 * 60 * 24))
-        );
-
-        return {
-          ...task,
-          timeLapsed,
-          timeLeft,
-        };
-      });
-
-    return {
-      totalTasks,
-      completedTasks,
-      pendingTasks,
-      inProgressTasks,
-      completionPercentage: ((completedTasks / totalTasks) * 100).toFixed(1),
-      averageTimeToComplete,
-      pendingSummary,
-    };
-  }, [tasks]);
-
-  const {
-    totalTasks,
-    completedTasks,
-    pendingTasks,
-    inProgressTasks,
-    completionPercentage,
-    averageTimeToComplete,
-    pendingSummary,
-  } = dashboardSummary;
+  const {user} = useSelector((state: any) => state.user);
 
   return (
     <>
@@ -140,7 +51,7 @@ export default function DashboardPage() {
             </tr>
           </thead>
           <tbody>
-            {user?.todos?.map((task) => {
+            {user?.todos?.map((task: any) => {
               return(
               <tr key={task.id}>
                 <td className="py-2 border-b border-gray-200">{task.title}</td>

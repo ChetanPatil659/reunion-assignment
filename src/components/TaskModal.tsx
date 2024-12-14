@@ -44,7 +44,7 @@ const TaskModal: React.FC<TaskModalProps> = ({
     const task: Task = { title: name, priority, status, startDate, endDate, _id: taskData._id };
     if (onSave) {
       // console.log(taskData._id)
-      onSave(task, taskData?._id);
+      onSave(task);
     }
   };
 

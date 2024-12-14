@@ -3,9 +3,10 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import loginIllus from "@/assets/loginIllus.jpg"
 import { Link } from "react-router"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { loginUser } from "@/store/userSlice"
 import { getTodo } from "@/store/todoSlice"
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit"
  
 const formSchema = z.object({
   email: z.string().email(),
@@ -13,8 +14,7 @@ const formSchema = z.object({
 })
 
 export default function LoginPage() {
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.user)
+  const dispatch: ThunkDispatch<any, unknown, AnyAction> = useDispatch();
 
     const form = useForm<z.infer<typeof formSchema>>({  
         resolver: zodResolver(formSchema),
