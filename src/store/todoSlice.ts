@@ -24,8 +24,7 @@ export const createTodo = createAsyncThunk("todo/create", async (data) => {
   }
 });
 
-export const updateTodo = createAsyncThunk("todo/update", async (data) => {
-  console.log(data)
+export const updateTodo = createAsyncThunk("todo/update", async (data: { _id: string }) => {
   try {
     
     const response = await axios(
