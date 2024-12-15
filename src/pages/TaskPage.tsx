@@ -122,7 +122,7 @@ const filterByStatus = (todos: [], status: 'pending' | 'completed' | 'All') => {
 
           {/* Status Select */}
           <Select onValueChange={(e) => {
-            filterByStatus(todos, e)
+            filterByStatus(todos, e as "pending" | "completed" | "All")
           }}>
             <SelectTrigger className="gap-5 border-gray-300 w-48">
               <SelectValue placeholder="Status" />
