@@ -10,7 +10,7 @@ const initialState = {
 
 export const loginUser = createAsyncThunk("user/login", async (data) => {
   try {
-    const response = await axios.post("http://localhost:8000/user/login", data);
+    const response = await axios.post("https://reunion-assignment-1-backend.onrender.com/user/login", data);
 
     return await response.data;
   } catch (error) {
@@ -21,7 +21,7 @@ export const loginUser = createAsyncThunk("user/login", async (data) => {
 export const registerUser = createAsyncThunk("user/register", async (data) => {
   try {
     const response = await axios.post(
-      "http://localhost:8000/user/register",
+      "https://reunion-assignment-1-backend.onrender.com/user/register",
       data
     );
 
@@ -33,7 +33,7 @@ export const registerUser = createAsyncThunk("user/register", async (data) => {
 
 export const getUser = createAsyncThunk("user/getUser", async () => {
   try {
-    const response = await axios("http://localhost:8000/user/getUser", {
+    const response = await axios("https://reunion-assignment-1-backend.onrender.com/user/getUser", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export const getUser = createAsyncThunk("user/getUser", async () => {
 
 export const logoutUser = createAsyncThunk("user/logout", async () => {
     try {
-      const response = await axios("http://localhost:8000/user/logout", {
+      const response = await axios("https://reunion-assignment-1-backend.onrender.com/user/logout", {
           method: "GET",
           headers: {
               "Content-Type": "application/json",

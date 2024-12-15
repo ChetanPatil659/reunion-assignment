@@ -9,7 +9,7 @@ const initialState = {
 
 export const createTodo = createAsyncThunk("todo/create", async (data) => {
   try {
-    const response = await axios("http://localhost:8000/todo/create", {
+    const response = await axios("https://reunion-assignment-1-backend.onrender.com/todo/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export const updateTodo = createAsyncThunk("todo/update", async (data: { _id: st
   try {
     
     const response = await axios(
-      `http://localhost:8000/todo/update/${data._id}`,
+      `https://reunion-assignment-1-backend.onrender.com/todo/update/${data._id}`,
       {
         method: "PUT",
         headers: {
@@ -48,7 +48,7 @@ export const updateTodo = createAsyncThunk("todo/update", async (data: { _id: st
 export const getTodo = createAsyncThunk("todo/getTodos", async () => {
     try {
       const response = await axios(
-        `http://localhost:8000/todo/getTodos`,
+        `https://reunion-assignment-1-backend.onrender.com/todo/getTodos`,
         {
           method: "GET",
           headers: {
